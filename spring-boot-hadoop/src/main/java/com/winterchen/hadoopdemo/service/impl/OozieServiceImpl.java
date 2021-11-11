@@ -78,7 +78,7 @@ public class OozieServiceImpl implements OozieService {
             prop.setProperty(OozieConstants.JDBC_URL, oozieConfig.getJdbcUrl());
             prop.setProperty(OozieConstants.PASSWORD, StringUtils.isEmpty(oozieConfig.getPassword()) ? "" : oozieConfig.getPassword());
             prop.setProperty(OozieConstants.SQL_INPUT,workflowRequest.getWfPath().concat("sql/"));
-            prop.setProperty(OozieConstants.USER_NAME,"admin");
+            prop.setProperty(OozieConstants.USER_NAME,"etl");
             prop.setProperty(OozieConstants.TASK_TYPE, TaskTypeEnum.WORKFLOW.name());
             prop.setProperty(OozieConstants.SHELL_FILE_NAME,shellFileName);
             prop.setProperty(OozieConstants.SHELL_FILE_PATH, shellPath);

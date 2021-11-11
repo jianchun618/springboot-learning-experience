@@ -5,10 +5,10 @@ spring:
     name: hadoop-demo
   datasource:
     hive: #hive数据源
-      url: jdbc:hive2://192.168.150.119:10000/default
+      url: jdbc:hive2://192.168.134.11:10000/tdm
       type: com.alibaba.druid.pool.DruidDataSource
-      username: winterchen
-      password: winterchen
+      username: etl
+      password: etl
       driver-class-name: org.apache.hive.jdbc.HiveDriver
     common-config: #连接池统一配置，应用到所有的数据源
       initialSize: 1
@@ -26,24 +26,24 @@ spring:
       maxOpenPreparedStatements: 20
       filters: stat
 hdfs:
-  hdfsPath: hdfs://bigdata-master:8020
-  hdfsName: bigdata-master
+  hdfsPath: hdfs://node1:8020
+  hdfsName: etl
 
 oozie:
-  url: http://bigdata-master:11000/oozie
+  url: http://node1:11000/oozie
   wf:
     application:
-      path: hdfs://bigdata-master:9000/user/oozie/workflow/hiveserver2.xml
+      path: hdfs://node1:9000/user/oozie/workflow/hiveserver2.xml
   use:
     system:
       libpath: true
-  libpath: hdfs://bigdata-master:8020/user/oozie/share/lib
+  libpath: hdfs://node1:8020/user/oozie/share/lib
   callback:
     url: http://172.16.120.29:8080/label/oozie/callback?executeType=$1\&taskType=$2\&callbackId=$3
   jdbc:
-    url: jdbc:hive2://192.168.150.119:10000/default
+    url: jdbc:hive2://node1:10000/default
     password:
-  nameNode: hdfs://bigdata-master:8020
-  resourceManager: hdfs://bigdata-master:8088
+  nameNode: hdfs://node1:8020
+  resourceManager: hdfs://node1:8088
   queueName: default
-  job-tracker: bigdata-master:8032
+  job-tracker: node1:8032
