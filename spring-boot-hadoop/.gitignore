@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+!/src/main/resources/lib/ImpalaJDBC41-2.5.30.jar

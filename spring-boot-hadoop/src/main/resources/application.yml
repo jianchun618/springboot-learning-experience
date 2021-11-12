@@ -10,6 +10,12 @@ spring:
       username: etl
       password: etl
       driver-class-name: org.apache.hive.jdbc.HiveDriver
+    impala: #impala数据源
+        url: jdbc:hive2://192.168.134.11:21050/tdm
+        type: com.alibaba.druid.pool.DruidDataSource
+        username: etl
+        password: etl
+        driver-class-name: com.cloudera.impala.jdbc41.Driver
     common-config: #连接池统一配置，应用到所有的数据源
       initialSize: 1
       minIdle: 1

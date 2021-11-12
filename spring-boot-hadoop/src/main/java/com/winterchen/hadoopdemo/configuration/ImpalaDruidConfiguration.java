@@ -2,7 +2,7 @@ package com.winterchen.hadoopdemo.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.winterchen.hadoopdemo.properties.DataSourceCommonProperties;
-import com.winterchen.hadoopdemo.properties.HiveJdbcProperties;
+import com.winterchen.hadoopdemo.properties.ImpalaJdbcProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,25 +15,25 @@ import java.sql.SQLException;
 
 @Slf4j
 @Configuration
-@EnableConfigurationProperties({HiveJdbcProperties.class, DataSourceCommonProperties.class})
-public class HiveDruidConfiguration {
+@EnableConfigurationProperties({ImpalaJdbcProperties.class, DataSourceCommonProperties.class})
+public class ImpalaDruidConfiguration {
 
     @Autowired
-    private HiveJdbcProperties hiveJdbcProperties;
+    private ImpalaJdbcProperties impalaJdbcProperties;
 
     @Autowired
     private DataSourceCommonProperties dataSourceCommonProperties;
 
-    @Bean("hiveDruidDataSource") //新建bean实例
-    @Qualifier("hiveDruidDataSource")//标识
-    public DataSource dataSource(){
+    @Bean("impalaDruidDataSource")
+    @Qualifier("impalaDruidDataSource")
+    public DataSource dataSource() {
         DruidDataSource datasource = new DruidDataSource();
 
         //配置数据源属性
-        datasource.setUrl(hiveJdbcProperties.getUrl());
-        datasource.setUsername(hiveJdbcProperties.getUsername());
-        datasource.setPassword(hiveJdbcProperties.getPassword());
-        datasource.setDriverClassName(hiveJdbcProperties.getDriverClassName());
+        datasource.setUrl(impalaJdbcProperties.getUrl());
+        datasource.setUsername(impalaJdbcProperties.getUsername());
+        datasource.setPassword(impalaJdbcProperties.getPassword());
+        datasource.setDriverClassName(impalaJdbcProperties.getDriverClassName());
 
         //配置统一属性
         datasource.setInitialSize(dataSourceCommonProperties.getInitialSize());
@@ -50,7 +50,7 @@ public class HiveDruidConfiguration {
         try {
             datasource.setFilters(dataSourceCommonProperties.getFilters());
         } catch (SQLException e) {
-            log.error("hive Druid configuration initialization filter error.", e);
+            log.error("Impala Druid configuration initialization filter error.", e);
         }
         return datasource;
     }
