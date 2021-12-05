@@ -179,11 +179,11 @@ public class BokeWordUtils {
     }
 
     public static void main(String[] args) {
+        String basePath = FolderToZipUtil.getRootPath();
         //模板文件地址
-        String inputUrl = "C:\\Users\\jc336\\Desktop\\test.docx";
+        String inputUrl = basePath+"filesource/test.docx";
         //新生产的模板文件
-        String outputUrl = "C:\\Users\\jc336\\Desktop\\test1.docx";
-
+        String outputUrl =  basePath+"filesource/download/test1.docx";
         Map<String, String> testMap = new HashMap<String, String>();
         testMap.put("name", "小明");
         testMap.put("sex", "男");
