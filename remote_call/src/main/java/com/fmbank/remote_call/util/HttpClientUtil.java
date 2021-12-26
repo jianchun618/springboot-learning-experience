@@ -33,7 +33,7 @@ import java.util.*;
 @Component
 @Slf4j
 public class HttpClientUtil {
-    private String host = "http://120.76.205.7:8080/api";
+    private String host = "http://ip:8080/api";
     private String username = "admin";
     private String password = "123456";
 
