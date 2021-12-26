@@ -33,7 +33,7 @@ import java.util.*;
 @Component
 @Slf4j
 public class HttpClientUtil {
-    private String host = "http://ip:8080/api";
+    private String host = "http://120.76.205.7:8080/api";
     private String username = "admin";
     private String password = "123456";
 
@@ -175,11 +175,10 @@ public class HttpClientUtil {
     /**
      * 登录功能
      */
+    @Test
     public void login() {
         String loginURL = host + "/auth/login";
-        String method = "POST";
-        String loginMsg = String.format("{\"username\":\"%s\",\"password\":\"%s\",\"rememberMe\":1}",
-                this.username, this.password);
+        String loginMsg = String.format("{\"username\":\"%s\",\"password\":\"%s\",\"rememberMe\":1}", this.username, this.password);
         log.info("登录flinkx-web, {}, {}.", loginURL, loginMsg);
         String result = doPostJson(loginURL, loginMsg);
         if(!ObjectUtils.isEmpty(result)){
@@ -199,6 +198,7 @@ public class HttpClientUtil {
     public void testAddTask() {
         //执行登录
         login();
+
         HashMap<String, Object> headParams = new HashMap<>();
         headParams.put("Authorization",authorization);
         //任务的调度
